@@ -1,0 +1,99 @@
+" ##################################################################
+"
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
+"
+"       Use VIM-plug as plugin manager.
+"
+"
+" ##################################################################
+"
+
+" Basic
+set nocompatiable
+set background=dark
+
+filetype plugin indent on
+
+" Download VIM-Plug
+" {
+
+if empty(glob('$HOME/.vim/autoload/plug.vim'))
+    silent !curl -fLo '$HOME/.vim/autoload/plug.vim' --create-dirs
+        \ https://raw.githubusercontent.com/juengunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" }
+
+" File type
+" {
+
+if has('multi_byte')
+    set encoding=utf-8
+    set termencoding=utf-8
+    set fileencoding=utf-8
+    set ambwidth=double
+    set fileencodings=utf-8,big5,euc-jp,gbk,euc-kr,utf-com,iso8859-1
+else
+    echoerr '[!] Sorry, this version of (n)vim was not comiled with multi_byte support'
+endif
+
+" }
+
+" Plugin list
+" {
+call plug#begin('$HOME/.vim/plugged')
+
+    set completeopt=noselect,noinsert,menuone,longest
+    set previewheight=8
+
+    Plug 'ryanoasis/vim-devicons'           " Icon
+    Plug 'ntpeters/vim-better-whitespace'   " Show trailing whitespace
+    Plug 'honza/vim-snippets'               " Code snippets
+
+    " Fast modification
+    " {
+    Plug 'tpope/vim-repeat'         " Quick redo with key '.'
+    Plug 'tpope/vim-surround'       " Quick add/remove surrounding: ds, cs, ys
+    Plug 'tpope/vim-commentary'     " Quick comment
+    " }
+
+
+    " Autocomplete:
+    "       deoplete.nvim
+    " {
+    if has('nvim') && has('python3')
+        " Use block cursor
+        set guicursor=
+        Plug 'Shougo/deoplete.nvim', {'do', ':UpdateRemotePlugins'}
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+    " }
+
+    " Languages supported
+    " {
+
+    " Rust
+    Plug 'racer-rust/vim-racer', {'for': 'rs'}
+
+    " C#
+    " Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
+
+    " }
+
+    " Linter
+    " Plug 'dense-analysis/ale'
+
+    " LSP
+    " Plug 'autozimu/LanguageClient-neovim'
+
+call plug#end()
+" }
+
+" Plugin config
+" {
+
+" }
