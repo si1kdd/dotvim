@@ -1,4 +1,4 @@
 # dotvim
 
-My personal vim configure files
+My personal vim configure scripts.
 

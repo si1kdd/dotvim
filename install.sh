@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
+set -o pipefail
 
 # Clone color scheme.
 get_fit()
@@ -8,9 +9,14 @@ get_fit()
 
 }
 
-
 # Show menu item
 show()
+{
+
+}
+
+# Clean up function
+clean_all()
 {
 
 }

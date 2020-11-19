@@ -43,7 +43,12 @@ endif
 " Theme
 " {
     if $COLORTERM == 'truecolor'
-        set termguicolors
+        if has('termguicolors')
+            " Fix vim true color issue.
+            set t_8f=^[[38;2;%lu;%lu;%lum
+            set t_8b=^[[48;2;%lu;%lu;%lum
+            set termguicolors
+        endif
     else
         set term='xterm-256color'
         set t_Co=256
